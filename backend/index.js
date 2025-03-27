@@ -12,7 +12,12 @@ const PORT = process.env.PORT || 8001;
 //middlewares
 app.use(express.json());
 app.use(cookieParser());
-app.use(cors({ origin: "*" }));
+app.use(
+  cors({
+    origin: "https://to-do-app-using-mern-rosy.vercel.app",
+    credentials: true,
+  })
+);
 app.use("/api/user", userRoute);
 
 app.use("/api/todo", checkForAuth, todoRoute);
