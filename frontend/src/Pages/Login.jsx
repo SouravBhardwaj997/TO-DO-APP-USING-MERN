@@ -36,9 +36,15 @@ const Login = () => {
       return;
     }
     try {
-      const response = await axios.post(`${API_URL}/api/user/login`, {
-        ...loginData,
-      });
+      const response = await axios.post(
+        `${API_URL}/api/user/login`,
+        {
+          ...loginData,
+        },
+        {
+          withCredentials: true,
+        }
+      );
       if (response.data.success) {
         setTimeout(() => {
           toast.success(response.data.message, {
