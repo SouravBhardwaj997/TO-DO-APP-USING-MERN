@@ -4,13 +4,14 @@ import { toast } from "react-toastify";
 
 const TodoPage = () => {
   const API_URL = import.meta.env.VITE_BACKEND_URL;
+  console.log(API_URL);
   const [todos, setTodos] = useState([]);
   const [title, setTitle] = useState("");
   const [isUpdating, setIsUpdating] = useState(false);
   const [todoBeingUpdated, setTodoBeingUpdated] = useState({});
   const fetchTodos = async () => {
     try {
-      const response = await axios.get("/api/todo/fetch", {
+      const response = await axios.get(`${API_URL}/api/todo/fetch`, {
         headers: {
           "Content-Type": "application/json",
         },
