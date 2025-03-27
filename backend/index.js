@@ -5,12 +5,14 @@ import userRoute from "./routes/user.route.js";
 import todoRoute from "./routes/todo.route.js";
 import { checkForAuth } from "./middlewares/auth.middleware.js";
 import cookieParser from "cookie-parser";
+import cors from "cors";
 const app = express();
 const PORT = process.env.PORT || 8001;
 
 //middlewares
 app.use(express.json());
 app.use(cookieParser());
+app.use(cors());
 app.use("/api/user", userRoute);
 
 app.use("/api/todo", checkForAuth, todoRoute);

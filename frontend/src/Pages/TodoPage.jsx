@@ -3,6 +3,7 @@ import React, { useEffect, useState } from "react";
 import { toast } from "react-toastify";
 
 const TodoPage = () => {
+  const API_URL = import.meta.env.VITE_BACKEND_URL;
   const [todos, setTodos] = useState([]);
   const [title, setTitle] = useState("");
   const [isUpdating, setIsUpdating] = useState(false);
@@ -36,7 +37,7 @@ const TodoPage = () => {
     try {
       const newTodo = { title, completed: false };
       setTodos((prevTodos) => [...prevTodos, newTodo]);
-      const response = await axios.post("/api/todo/create", {
+      const response = await axios.post(`${API_URL}/api/todo/create`, {
         ...newTodo,
       });
       fetchTodos();
@@ -60,7 +61,7 @@ const TodoPage = () => {
 
   const deleteTodo = async (id) => {
     try {
-      const response = await axios.delete(`/api/todo/delete/${id}`);
+      const response = await axios.delete(`${API_URL}/api/todo/delete/${id}`);
       fetchTodos();
       toast.success(response.data.message, {
         position: "top-center",
@@ -102,7 +103,7 @@ const TodoPage = () => {
     try {
       const updatedTodo = { title };
       const response = await axios.put(
-        `/api/todo/update/${todoBeingUpdated._id}`,
+        `${API_URL}/api/todo/update/${todoBeingUpdated._id}`,
         updatedTodo
       );
       setIsUpdating(false);
@@ -132,7 +133,7 @@ const TodoPage = () => {
         todo._id === id ? { ...todo, completed: !todo.completed } : todo
       );
       setTodos(updatedTodos);
-      const response = await axios.put(`/api/todo/update/${id}`, {
+      const response = await axios.put(`${API_URL}/api/todo/update/${id}`, {
         completed: updatedTodos.find((todo) => todo._id === id).completed,
       });
       fetchTodos();

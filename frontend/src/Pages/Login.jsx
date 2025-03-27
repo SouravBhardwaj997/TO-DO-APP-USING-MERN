@@ -4,6 +4,7 @@ import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 
 const Login = () => {
+  const API_URL = import.meta.env.VITE_BACKEND_URL;
   const [isLogin, setIsLogin] = useState(true);
   const nav = useNavigate();
   const [loginData, setLoginData] = useState({ email: "", password: "" });
@@ -34,7 +35,7 @@ const Login = () => {
       return;
     }
     try {
-      const response = await axios.post("/api/user/login", {
+      const response = await axios.post(`${API_URL}/api/user/login`, {
         ...loginData,
       });
       if (response.data.success) {
@@ -87,7 +88,7 @@ const Login = () => {
       return;
     }
     try {
-      const response = await axios.post("/api/user/sign-up", {
+      const response = await axios.post(`${API_URL}/api/user/sign-up`, {
         ...signUpData,
       });
       console.log(response);
