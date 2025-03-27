@@ -36,7 +36,7 @@ const Login = () => {
       return;
     }
     try {
-      const response = await axios.post(`${API_URL}/api/user/login`, {
+      const response = await axios.post(`${API_URL}api/user/login`, {
         ...loginData,
       });
       if (response.data.success) {
@@ -89,7 +89,7 @@ const Login = () => {
       return;
     }
     try {
-      const response = await axios.post(`${API_URL}/api/user/sign-up`, {
+      const response = await axios.post(`${API_URL}api/user/sign-up`, {
         ...signUpData,
       });
       console.log(response);
