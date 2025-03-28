@@ -15,6 +15,7 @@ const TodoPage = () => {
         headers: {
           "Content-Type": "application/json",
         },
+        withCredentials: true,
       });
       setTodos(response.data.todos);
     } catch (error) {
@@ -38,9 +39,15 @@ const TodoPage = () => {
     try {
       const newTodo = { title, completed: false };
       setTodos((prevTodos) => [...prevTodos, newTodo]);
-      const response = await axios.post(`${API_URL}/api/todo/create`, {
-        ...newTodo,
-      });
+      const response = await axios.post(
+        `${API_URL}/api/todo/create`,
+        {
+          ...newTodo,
+        },
+        {
+          withCredentials: true,
+        }
+      );
       fetchTodos();
       toast.success(response.data.message, {
         position: "top-center",
@@ -62,7 +69,9 @@ const TodoPage = () => {
 
   const deleteTodo = async (id) => {
     try {
-      const response = await axios.delete(`${API_URL}/api/todo/delete/${id}`);
+      const response = await axios.delete(`${API_URL}/api/todo/delete/${id}`, {
+        withCredentials: true,
+      });
       fetchTodos();
       toast.success(response.data.message, {
         position: "top-center",
@@ -105,7 +114,10 @@ const TodoPage = () => {
       const updatedTodo = { title };
       const response = await axios.put(
         `${API_URL}/api/todo/update/${todoBeingUpdated._id}`,
-        updatedTodo
+        updatedTodo,
+        {
+          withCredentials: true,
+        }
       );
       setIsUpdating(false);
       setTitle("");
@@ -134,9 +146,15 @@ const TodoPage = () => {
         todo._id === id ? { ...todo, completed: !todo.completed } : todo
       );
       setTodos(updatedTodos);
-      const response = await axios.put(`${API_URL}/api/todo/update/${id}`, {
-        completed: updatedTodos.find((todo) => todo._id === id).completed,
-      });
+      const response = await axios.put(
+        `${API_URL}/api/todo/update/${id}`,
+        {
+          completed: updatedTodos.find((todo) => todo._id === id).completed,
+        },
+        {
+          withCredentials: true,
+        }
+      );
       fetchTodos();
     } catch (error) {
       console.log(error);
