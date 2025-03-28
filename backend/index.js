@@ -18,6 +18,16 @@ app.use(
     credentials: true,
   })
 );
+
+app.get("/test-cookie", (req, res) => {
+  res.cookie("testToken", "123456", {
+    httpOnly: true,
+    secure: true,
+    sameSite: "none",
+  });
+  res.send("Cookie sent");
+});
+
 app.use("/api/user", userRoute);
 
 app.use("/api/todo", checkForAuth, todoRoute);

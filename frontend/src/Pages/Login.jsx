@@ -46,7 +46,7 @@ const Login = () => {
       );
       if (response.data.success) {
         setTimeout(() => {
-          toast.success(response.data.message, {
+          toast.success(response.data.message || "Something went wrong!", {
             position: "top-center",
             autoClose: 5000,
             draggable: true,
@@ -54,7 +54,7 @@ const Login = () => {
           });
         }, 500);
         sessionStorage.setItem("isLogin", true);
-        sessionStorage.setItem("userData", response.data.user);
+        sessionStorage.setItem("userData", JSON.stringify(response.data.user));
         nav("/todos");
       }
     } catch (error) {
@@ -115,7 +115,7 @@ const Login = () => {
       }
     } catch (error) {
       console.log(error);
-      toast.error(error.response.data.message, {
+      toast.error(error.response.data.message || "Something went wrong!", {
         position: "top-center",
         autoClose: 5000,
         draggable: true,
