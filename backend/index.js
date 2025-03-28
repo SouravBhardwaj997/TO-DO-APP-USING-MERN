@@ -15,7 +15,7 @@ app.use(express.json());
 app.use(cookieParser());
 app.use(
   cors({
-    origin: "*",
+    origin: "https://to-do-app-using-mern-lhxx.vercel.app/",
     credentials: true,
   })
 );
