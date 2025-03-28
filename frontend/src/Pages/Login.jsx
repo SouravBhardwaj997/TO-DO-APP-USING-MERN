@@ -46,7 +46,7 @@ const Login = () => {
       );
       if (response.data.success) {
         setTimeout(() => {
-          toast.success(response.data.message || "Something went wrong!", {
+          toast.success(response.data.message, {
             position: "top-center",
             autoClose: 5000,
             draggable: true,
@@ -59,7 +59,7 @@ const Login = () => {
       }
     } catch (error) {
       console.log(error);
-      toast.error(error.response.data.message, {
+      toast.error(error.response.data.message || "Something went wrong!", {
         position: "top-center",
         autoClose: 5000,
         draggable: true,
