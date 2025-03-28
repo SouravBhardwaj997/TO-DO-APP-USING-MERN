@@ -73,6 +73,7 @@ const TodoPage = () => {
         withCredentials: true,
       });
       fetchTodos();
+
       toast.success(response.data.message, {
         position: "top-center",
         autoClose: 5000,
