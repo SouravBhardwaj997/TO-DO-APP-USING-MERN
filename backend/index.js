@@ -6,6 +6,7 @@ import todoRoute from "./routes/todo.route.js";
 import { checkForAuth } from "./middlewares/auth.middleware.js";
 import cookieParser from "cookie-parser";
 import cors from "cors";
+import { generateToken } from "./services/auth.service.js";
 const app = express();
 const PORT = process.env.PORT || 8001;
 
@@ -19,8 +20,9 @@ app.use(
   })
 );
 
-app.get("/test-cookie", (req, res) => {
-  res.cookie("testToken", "123456", {
+pp.get("/test-cookie", async (req, res) => {
+  const token = await generateToken({ id: 124, name: Hello });
+  res.cookie("testToken", token, {
     httpOnly: true,
     secure: true,
     sameSite: "none",
