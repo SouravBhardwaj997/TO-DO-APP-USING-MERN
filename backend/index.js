@@ -32,7 +32,7 @@ app.get("/test-cookie", async (req, res) => {
 
 app.use("/api/user", userRoute);
 
-app.use("/api/todo", checkForAuth, todoRoute);
+app.use("/api/todo", todoRoute);
 app.listen(PORT, () => {
   connectToDB();
   console.log("Server is running at port number", PORT);
