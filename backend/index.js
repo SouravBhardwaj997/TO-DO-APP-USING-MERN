@@ -21,7 +21,7 @@ app.use(
 );
 
 app.get("/test-cookie", async (req, res) => {
-  const token = await generateToken({ id: 124, name: Hello });
+  const token = await generateToken({ id: 124, name: "Hello" });
   res.cookie("testToken", token, {
     httpOnly: true,
     secure: true,
