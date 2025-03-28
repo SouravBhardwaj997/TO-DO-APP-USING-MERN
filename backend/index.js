@@ -20,7 +20,7 @@ app.use(
   })
 );
 
-pp.get("/test-cookie", async (req, res) => {
+app.get("/test-cookie", async (req, res) => {
   const token = await generateToken({ id: 124, name: Hello });
   res.cookie("testToken", token, {
     httpOnly: true,
